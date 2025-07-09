@@ -1,0 +1,611 @@
+// server/index.ts
+import express2 from "express";
+
+// server/routes.ts
+import { createServer } from "http";
+
+// server/storage.ts
+var MemStorage = class {
+  users;
+  assessments;
+  testimonials;
+  mentors;
+  currentUserId;
+  currentAssessmentId;
+  currentTestimonialId;
+  currentMentorId;
+  constructor() {
+    this.users = /* @__PURE__ */ new Map();
+    this.assessments = /* @__PURE__ */ new Map();
+    this.testimonials = /* @__PURE__ */ new Map();
+    this.mentors = /* @__PURE__ */ new Map();
+    this.currentUserId = 1;
+    this.currentAssessmentId = 1;
+    this.currentTestimonialId = 1;
+    this.currentMentorId = 1;
+  }
+  async getUser(id) {
+    return this.users.get(id);
+  }
+  async getUserByUsername(username) {
+    return Array.from(this.users.values()).find(
+      (user) => user.username === username
+    );
+  }
+  async createUser(insertUser) {
+    const id = this.currentUserId++;
+    const user = { ...insertUser, id };
+    this.users.set(id, user);
+    return user;
+  }
+  async createAssessment(insertAssessment) {
+    const id = this.currentAssessmentId++;
+    const assessment = {
+      ...insertAssessment,
+      id,
+      createdAt: /* @__PURE__ */ new Date()
+    };
+    this.assessments.set(id, assessment);
+    return assessment;
+  }
+  async getAssessments() {
+    return Array.from(this.assessments.values());
+  }
+  async getTestimonials() {
+    return Array.from(this.testimonials.values());
+  }
+  async createTestimonial(insertTestimonial) {
+    const id = this.currentTestimonialId++;
+    const testimonial = {
+      ...insertTestimonial,
+      id,
+      avatarUrl: insertTestimonial.avatarUrl || null,
+      salaryIncrease: insertTestimonial.salaryIncrease || null,
+      rating: insertTestimonial.rating || null
+    };
+    this.testimonials.set(id, testimonial);
+    return testimonial;
+  }
+  async getMentors() {
+    return Array.from(this.mentors.values());
+  }
+  async createMentor(insertMentor) {
+    const id = this.currentMentorId++;
+    const mentor = {
+      ...insertMentor,
+      id,
+      avatarUrl: insertMentor.avatarUrl || null,
+      experience: insertMentor.experience || null
+    };
+    this.mentors.set(id, mentor);
+    return mentor;
+  }
+};
+var storage = new MemStorage();
+
+// shared/schema.ts
+import { pgTable, text, serial, integer, timestamp } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+var users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  password: text("password").notNull()
+});
+var assessments = pgTable("assessments", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  currentRole: text("current_role").notNull(),
+  experience: text("experience").notNull(),
+  salary: text("salary").notNull(),
+  targetSalary: text("target_salary").notNull(),
+  createdAt: timestamp("created_at").defaultNow()
+});
+var testimonials = pgTable("testimonials", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  company: text("company").notNull(),
+  content: text("content").notNull(),
+  avatarUrl: text("avatar_url"),
+  salaryIncrease: text("salary_increase"),
+  rating: integer("rating").default(5)
+});
+var mentors = pgTable("mentors", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  title: text("title").notNull(),
+  company: text("company").notNull(),
+  bio: text("bio").notNull(),
+  avatarUrl: text("avatar_url"),
+  experience: text("experience")
+});
+var insertUserSchema = createInsertSchema(users).pick({
+  username: true,
+  password: true
+});
+var insertAssessmentSchema = createInsertSchema(assessments).omit({
+  id: true,
+  createdAt: true
+});
+var insertTestimonialSchema = createInsertSchema(testimonials).omit({
+  id: true
+});
+var insertMentorSchema = createInsertSchema(mentors).omit({
+  id: true
+});
+
+// server/google-sheets.ts
+import { google } from "googleapis";
+var GoogleSheetsService = class {
+  sheets;
+  spreadsheetId;
+  constructor() {
+    this.spreadsheetId = process.env.GOOGLE_SHEET_ID || "";
+    if (!this.spreadsheetId) {
+      console.warn("GOOGLE_SHEET_ID not found in environment variables");
+      return;
+    }
+    try {
+      const serviceAccountJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+      if (!serviceAccountJson) {
+        console.warn("GOOGLE_SERVICE_ACCOUNT_JSON not found in environment variables");
+        return;
+      }
+      const credentials = JSON.parse(serviceAccountJson);
+      const auth = new google.auth.GoogleAuth({
+        credentials,
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"]
+      });
+      this.sheets = google.sheets({ version: "v4", auth });
+    } catch (error) {
+      console.error("Error initializing Google Sheets service:", error);
+    }
+  }
+  async appendAssessment(assessment) {
+    if (!this.sheets || !this.spreadsheetId) {
+      console.warn("Google Sheets not properly configured");
+      return;
+    }
+    try {
+      const values = [
+        [
+          assessment.name,
+          assessment.email,
+          assessment.currentRole,
+          assessment.experience,
+          assessment.salary,
+          assessment.targetSalary,
+          (/* @__PURE__ */ new Date()).toISOString()
+        ]
+      ];
+      await this.sheets.spreadsheets.values.append({
+        spreadsheetId: this.spreadsheetId,
+        range: "A:G",
+        // Adjust range as needed
+        valueInputOption: "RAW",
+        resource: {
+          values
+        }
+      });
+      console.log("Assessment successfully added to Google Sheets");
+    } catch (error) {
+      console.error("Error adding assessment to Google Sheets:", error);
+      throw error;
+    }
+  }
+};
+var googleSheetsService = new GoogleSheetsService();
+
+// server/google-apps-script.ts
+var GoogleAppsScriptService = class {
+  webhookUrl;
+  constructor() {
+    this.webhookUrl = process.env.GOOGLE_APPS_SCRIPT_URL || "";
+    if (!this.webhookUrl) {
+      console.warn("GOOGLE_APPS_SCRIPT_URL not found in environment variables");
+    }
+  }
+  async appendAssessment(assessment) {
+    if (!this.webhookUrl) {
+      throw new Error("Google Apps Script webhook URL not configured");
+    }
+    try {
+      const payload = {
+        name: assessment.name,
+        email: assessment.email,
+        currentRole: assessment.currentRole,
+        experience: assessment.experience,
+        salary: assessment.salary,
+        targetSalary: assessment.targetSalary,
+        timestamp: (/* @__PURE__ */ new Date()).toISOString()
+      };
+      const response = await fetch(this.webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      if (!result.success) {
+        throw new Error(result.error || "Failed to save to Google Sheets");
+      }
+      console.log("Assessment saved to Google Sheets via Apps Script");
+    } catch (error) {
+      console.error("Error saving to Google Sheets via Apps Script:", error);
+      throw error;
+    }
+  }
+};
+var googleAppsScriptService = new GoogleAppsScriptService();
+
+// server/paypal.ts
+import {
+  Client,
+  Environment,
+  LogLevel,
+  OAuthAuthorizationController,
+  OrdersController
+} from "@paypal/paypal-server-sdk";
+var { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env;
+var client = null;
+var ordersController = null;
+var oAuthAuthorizationController = null;
+if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
+  console.warn("PayPal credentials not found. PayPal functionality will be disabled.");
+} else {
+  client = new Client({
+    clientCredentialsAuthCredentials: {
+      oAuthClientId: PAYPAL_CLIENT_ID,
+      oAuthClientSecret: PAYPAL_CLIENT_SECRET
+    },
+    timeout: 0,
+    environment: process.env.NODE_ENV === "production" ? Environment.Production : Environment.Sandbox,
+    logging: {
+      logLevel: LogLevel.Info,
+      logRequest: {
+        logBody: true
+      },
+      logResponse: {
+        logHeaders: true
+      }
+    }
+  });
+  ordersController = new OrdersController(client);
+  oAuthAuthorizationController = new OAuthAuthorizationController(client);
+}
+async function getClientToken() {
+  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET || !oAuthAuthorizationController) {
+    throw new Error("PayPal not configured");
+  }
+  const auth = Buffer.from(
+    `${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`
+  ).toString("base64");
+  const { result } = await oAuthAuthorizationController.requestToken(
+    {
+      authorization: `Basic ${auth}`
+    },
+    { intent: "sdk_init", response_type: "client_token" }
+  );
+  return result.accessToken;
+}
+async function createPaypalOrder(req, res) {
+  if (!ordersController) {
+    return res.status(503).json({
+      error: "PayPal not configured. Please contact support."
+    });
+  }
+  try {
+    const { amount, currency, intent } = req.body;
+    if (!amount || isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
+      return res.status(400).json({
+        error: "Invalid amount. Amount must be a positive number."
+      });
+    }
+    if (!currency) {
+      return res.status(400).json({ error: "Invalid currency. Currency is required." });
+    }
+    if (!intent) {
+      return res.status(400).json({ error: "Invalid intent. Intent is required." });
+    }
+    const collect = {
+      body: {
+        intent,
+        purchaseUnits: [
+          {
+            amount: {
+              currencyCode: currency,
+              value: amount
+            }
+          }
+        ]
+      },
+      prefer: "return=minimal"
+    };
+    const { body, ...httpResponse } = await ordersController.createOrder(collect);
+    const jsonResponse = JSON.parse(String(body));
+    const httpStatusCode = httpResponse.statusCode;
+    res.status(httpStatusCode).json(jsonResponse);
+  } catch (error) {
+    console.error("Failed to create order:", error);
+    res.status(500).json({ error: "Failed to create order." });
+  }
+}
+async function capturePaypalOrder(req, res) {
+  if (!ordersController) {
+    return res.status(503).json({
+      error: "PayPal not configured. Please contact support."
+    });
+  }
+  try {
+    const { orderID } = req.params;
+    const collect = {
+      id: orderID,
+      prefer: "return=minimal"
+    };
+    const { body, ...httpResponse } = await ordersController.captureOrder(collect);
+    const jsonResponse = JSON.parse(String(body));
+    const httpStatusCode = httpResponse.statusCode;
+    res.status(httpStatusCode).json(jsonResponse);
+  } catch (error) {
+    console.error("Failed to create order:", error);
+    res.status(500).json({ error: "Failed to capture order." });
+  }
+}
+async function loadPaypalDefault(req, res) {
+  try {
+    const clientToken = await getClientToken();
+    res.json({
+      clientToken
+    });
+  } catch (error) {
+    res.status(503).json({
+      error: "PayPal not configured. Please contact support."
+    });
+  }
+}
+
+// server/routes.ts
+import fs from "fs";
+import path from "path";
+async function registerRoutes(app2) {
+  let testimonials2 = [];
+  let mentors2 = [];
+  try {
+    const testimonialsPath = path.join(process.cwd(), "testimonials.json");
+    const mentorsPath = path.join(process.cwd(), "mentors.json");
+    if (fs.existsSync(testimonialsPath)) {
+      testimonials2 = JSON.parse(fs.readFileSync(testimonialsPath, "utf-8"));
+    }
+    if (fs.existsSync(mentorsPath)) {
+      mentors2 = JSON.parse(fs.readFileSync(mentorsPath, "utf-8"));
+    }
+  } catch (error) {
+    console.error("Error loading JSON files:", error);
+  }
+  app2.post("/api/assessment", async (req, res) => {
+    try {
+      const validatedData = insertAssessmentSchema.parse(req.body);
+      const assessment = await storage.createAssessment(validatedData);
+      try {
+        if (process.env.GOOGLE_APPS_SCRIPT_URL) {
+          await googleAppsScriptService.appendAssessment(assessment);
+        } else {
+          await googleSheetsService.appendAssessment(assessment);
+        }
+      } catch (sheetsError) {
+        console.error("Failed to save to Google Sheets:", sheetsError);
+      }
+      res.json({
+        success: true,
+        message: "Assessment submitted successfully",
+        id: assessment.id
+      });
+    } catch (error) {
+      console.error("Assessment submission error:", error);
+      res.status(400).json({
+        success: false,
+        message: "Invalid assessment data",
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+  app2.get("/api/testimonials", async (req, res) => {
+    try {
+      res.json(testimonials2);
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to fetch testimonials"
+      });
+    }
+  });
+  app2.get("/api/mentors", async (req, res) => {
+    try {
+      res.json(mentors2);
+    } catch (error) {
+      console.error("Error fetching mentors:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to fetch mentors"
+      });
+    }
+  });
+  app2.get("/setup", async (req, res) => {
+    await loadPaypalDefault(req, res);
+  });
+  app2.post("/order", async (req, res) => {
+    await createPaypalOrder(req, res);
+  });
+  app2.post("/order/:orderID/capture", async (req, res) => {
+    await capturePaypalOrder(req, res);
+  });
+  const httpServer = createServer(app2);
+  return httpServer;
+}
+
+// server/vite.ts
+import express from "express";
+import fs2 from "fs";
+import path3 from "path";
+import { createServer as createViteServer, createLogger } from "vite";
+
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path2 from "path";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+var vite_config_default = defineConfig({
+  plugins: [
+    react(),
+    runtimeErrorOverlay(),
+    ...process.env.NODE_ENV !== "production" && process.env.REPL_ID !== void 0 ? [
+      await import("@replit/vite-plugin-cartographer").then(
+        (m) => m.cartographer()
+      )
+    ] : []
+  ],
+  resolve: {
+    alias: {
+      "@": path2.resolve(import.meta.dirname, "client", "src"),
+      "@shared": path2.resolve(import.meta.dirname, "shared"),
+      "@assets": path2.resolve(import.meta.dirname, "attached_assets")
+    }
+  },
+  root: path2.resolve(import.meta.dirname, "client"),
+  build: {
+    outDir: path2.resolve(import.meta.dirname, "dist/public"),
+    emptyOutDir: true
+  },
+  server: {
+    fs: {
+      strict: true,
+      deny: ["**/.*"]
+    }
+  }
+});
+
+// server/vite.ts
+import { nanoid } from "nanoid";
+var viteLogger = createLogger();
+function log(message, source = "express") {
+  const formattedTime = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+  console.log(`${formattedTime} [${source}] ${message}`);
+}
+async function setupVite(app2, server) {
+  const serverOptions = {
+    middlewareMode: true,
+    hmr: { server },
+    allowedHosts: true
+  };
+  const vite = await createViteServer({
+    ...vite_config_default,
+    configFile: false,
+    customLogger: {
+      ...viteLogger,
+      error: (msg, options) => {
+        viteLogger.error(msg, options);
+        process.exit(1);
+      }
+    },
+    server: serverOptions,
+    appType: "custom"
+  });
+  app2.use(vite.middlewares);
+  app2.use("*", async (req, res, next) => {
+    const url = req.originalUrl;
+    try {
+      const clientTemplate = path3.resolve(
+        import.meta.dirname,
+        "..",
+        "client",
+        "index.html"
+      );
+      let template = await fs2.promises.readFile(clientTemplate, "utf-8");
+      template = template.replace(
+        `src="/src/main.tsx"`,
+        `src="/src/main.tsx?v=${nanoid()}"`
+      );
+      const page = await vite.transformIndexHtml(url, template);
+      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+    } catch (e) {
+      vite.ssrFixStacktrace(e);
+      next(e);
+    }
+  });
+}
+function serveStatic(app2) {
+  const distPath = path3.resolve(import.meta.dirname, "public");
+  if (!fs2.existsSync(distPath)) {
+    throw new Error(
+      `Could not find the build directory: ${distPath}, make sure to build the client first`
+    );
+  }
+  app2.use(express.static(distPath));
+  app2.use("*", (_req, res) => {
+    res.sendFile(path3.resolve(distPath, "index.html"));
+  });
+}
+
+// server/index.ts
+import path4 from "path";
+var app = express2();
+app.use(express2.json());
+app.use(express2.urlencoded({ extended: false }));
+app.use("/attached_assets", express2.static(path4.join(process.cwd(), "attached_assets")));
+app.use((req, res, next) => {
+  const start = Date.now();
+  const path5 = req.path;
+  let capturedJsonResponse = void 0;
+  const originalResJson = res.json;
+  res.json = function(bodyJson, ...args) {
+    capturedJsonResponse = bodyJson;
+    return originalResJson.apply(res, [bodyJson, ...args]);
+  };
+  res.on("finish", () => {
+    const duration = Date.now() - start;
+    if (path5.startsWith("/api")) {
+      let logLine = `${req.method} ${path5} ${res.statusCode} in ${duration}ms`;
+      if (capturedJsonResponse) {
+        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+      }
+      if (logLine.length > 80) {
+        logLine = logLine.slice(0, 79) + "\u2026";
+      }
+      log(logLine);
+    }
+  });
+  next();
+});
+(async () => {
+  const server = await registerRoutes(app);
+  app.use((err, _req, res, _next) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
+    throw err;
+  });
+  if (app.get("env") === "development") {
+    await setupVite(app, server);
+  } else {
+    serveStatic(app);
+  }
+  const port = 5e3;
+  server.listen({
+    port,
+    host: "0.0.0.0",
+    reusePort: true
+  }, () => {
+    log(`serving on port ${port}`);
+  });
+})();
