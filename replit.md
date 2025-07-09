@@ -133,3 +133,7 @@ Changelog:
 - July 09, 2025. Created export documentation for GitHub repository transfer to user's personal account (sahilkohli151991)
 - July 09, 2025. Prepared GoDaddy hosting deployment guide with VPS setup and domain configuration instructions
 - July 09, 2025. Created Vercel deployment guide for easy hosting with GoDaddy domain integration and automatic GitHub deployments
+- July 09, 2025. Added Shubhi Duggal as new mentor with CA/CFA credentials and APAC experience
+- July 09, 2025. Changed PayPal button text from "Pay with PayPal" to "Enroll Now" while maintaining full integration
+- July 09, 2025. Improved PayPal error handling with automatic Calendly fallback for credit card issues
+- July 09, 2025. Prepared production deployment options with Railway, Render, and Netlify configurations
