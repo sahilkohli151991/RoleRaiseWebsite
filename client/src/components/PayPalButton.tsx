@@ -67,7 +67,11 @@ export default function PayPalButton({
       }
     } catch (error) {
       console.error('PayPal payment error:', error);
-      alert('Payment initialization failed. Please try again or contact support.');
+      alert('PayPal is temporarily unavailable. Please try again in a few minutes or book a strategy call to discuss payment options.');
+      // Automatically open Calendly as fallback
+      setTimeout(() => {
+        window.open('https://calendly.com/kohlisahil151991', '_blank');
+      }, 2000);
     }
   };
 

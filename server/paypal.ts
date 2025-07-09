@@ -114,6 +114,19 @@ export async function createPaypalOrder(req: Request, res: Response) {
             },
           },
         ],
+        paymentSource: {
+          paypal: {
+            experienceContext: {
+              paymentMethodPreference: "IMMEDIATE_PAYMENT_REQUIRED",
+              brandName: "RoleRaise",
+              locale: "en-US",
+              landingPage: "BILLING",
+              userAction: "PAY_NOW",
+              returnUrl: `${process.env.NODE_ENV === 'production' ? 'https://roleraise.com' : 'http://localhost:5000'}/payment-success`,
+              cancelUrl: `${process.env.NODE_ENV === 'production' ? 'https://roleraise.com' : 'http://localhost:5000'}/payment-cancel`
+            }
+          }
+        }
       },
       prefer: "return=minimal",
     };

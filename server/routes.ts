@@ -103,6 +103,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     await capturePaypalOrder(req, res);
   });
 
+  // PayPal return URLs
+  app.get("/payment-success", (req, res) => {
+    res.redirect("/?payment=success");
+  });
+
+  app.get("/payment-cancel", (req, res) => {
+    res.redirect("/?payment=cancelled");
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
