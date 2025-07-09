@@ -25,9 +25,9 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="how-it-works" className="py-24 lg:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="text-center mb-20">
           <div className="section-badge mb-8">
             <Zap className="w-4 h-4 mr-2" />
             Our Process
@@ -38,9 +38,9 @@ export default function HowItWorks() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {steps.map((step) => (
-            <div key={step.number} className="bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-200 card-hover">
+            <div key={step.number} className="bg-white rounded-3xl p-10 text-center shadow-xl border border-gray-200 card-hover hover:shadow-2xl transition-all duration-300">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-black text-white">{step.number}</span>
               </div>

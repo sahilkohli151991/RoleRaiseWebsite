@@ -19,8 +19,8 @@ export default function Navigation() {
 
   return (
     <nav className="fixed w-full bg-white/98 backdrop-blur-md z-50 border-b border-gray-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex justify-between items-center h-18">
           {/* Logo */}
           <div className="flex items-center">
             <a href="#" className="flex items-center">
@@ -29,10 +29,10 @@ export default function Navigation() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-8">
             <button 
               onClick={() => scrollToSection('how-it-works')}
-              className="text-gray-600 hover:text-gray-800 font-medium text-sm px-3 py-2 rounded-md hover:bg-gray-50 transition-all duration-200"
+              className="text-gray-600 hover:text-gray-800 font-medium text-sm px-4 py-3 rounded-lg hover:bg-gray-50 transition-all duration-200"
             >
               How It Works
             </button>
@@ -62,7 +62,7 @@ export default function Navigation() {
             </button>
             <button 
               onClick={() => scrollToSection('book-call')}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 py-2 rounded-full font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-sm hover:shadow-md"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-sm hover:shadow-md"
             >
               Book a Call
             </button>

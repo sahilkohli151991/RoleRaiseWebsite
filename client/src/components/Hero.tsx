@@ -90,11 +90,11 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="py-32 gradient-hero relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div>
-            <div className="section-badge mb-8">
+    <section id="hero" className="py-24 lg:py-32 gradient-hero relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="space-y-8">
+            <div className="section-badge mb-6">
               ⚡ 500+ Tech Professionals Placed in 2024
             </div>
             

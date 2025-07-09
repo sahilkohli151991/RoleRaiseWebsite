@@ -42,9 +42,9 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="pricing" className="py-24 lg:py-32 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="text-center mb-20">
           <div className="section-badge mb-6">
             <CreditCard className="w-4 h-4 mr-2" />
             Investment Options
@@ -60,14 +60,14 @@ export default function Pricing() {
           </div>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <div 
               key={index}
-              className={`bg-white rounded-2xl p-8 shadow-lg border-2 ${
+              className={`bg-white rounded-3xl p-10 shadow-xl border-2 transition-all duration-300 hover:shadow-2xl ${
                 plan.featured 
                   ? 'border-primary transform scale-105 relative' 
-                  : 'border-gray-200'
+                  : 'border-gray-200 hover:border-gray-300'
               }`}
             >
               {plan.featured && (
@@ -76,18 +76,18 @@ export default function Pricing() {
                 </div>
               )}
               
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
-                <div className="text-4xl font-black text-gray-900 mb-2">${plan.price.toLocaleString()}</div>
-                <p className="text-gray-600">One-time payment</p>
+              <div className="text-center mb-10">
+                <h3 className="text-3xl font-bold text-gray-900 mb-3">{plan.name}</h3>
+                <p className="text-gray-600 mb-8 text-lg">{plan.description}</p>
+                <div className="text-5xl font-black text-gray-900 mb-3">${plan.price.toLocaleString()}</div>
+                <p className="text-gray-600 font-medium">One-time payment</p>
               </div>
               
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-5 mb-10">
                 {plan.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
+                    <Check className="w-5 h-5 text-green-500 mr-4 flex-shrink-0" />
+                    <span className="text-gray-700 font-medium">{feature}</span>
                   </li>
                 ))}
               </ul>

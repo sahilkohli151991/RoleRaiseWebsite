@@ -63,8 +63,8 @@ export default function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-24 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-24 lg:py-32 bg-gradient-to-br from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-20">
           <div className="section-badge mb-8">
             <Heart className="w-4 h-4 mr-2" />
@@ -76,7 +76,7 @@ export default function Testimonials() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="testimonial-card group card-hover animate-fade-in-scale">
               <div className="flex items-center mb-6">

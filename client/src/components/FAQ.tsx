@@ -29,9 +29,9 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="faq" className="py-24 lg:py-32 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="text-center mb-20">
           <div className="section-badge mb-6">
             <HelpCircle className="w-4 h-4 mr-2" />
             Common Questions
@@ -41,9 +41,9 @@ export default function FAQ() {
           </h2>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           {questions.map((item, index) => (
-            <div key={index} className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+            <div key={index} className="bg-white rounded-3xl p-10 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300">
               <h3 className="heading-4 mb-4">"{item.question}"</h3>
               <p className="body-text">
                 <strong>{item.answer}</strong>
