@@ -1,7 +1,6 @@
 import Navigation from './Navigation';
 import Hero from './Hero';
 import SocialProof from './SocialProof';
-import Programs from './Programs';
 import HowItWorks from './HowItWorks';
 import CareerTransformation from './CareerTransformation';
 import Testimonials from './Testimonials';
@@ -20,7 +19,6 @@ export default function LandingPage() {
       <Navigation />
       <Hero />
       <SocialProof />
-      <Programs />
       <WhyNotCourses />
       <HowItWorks />
       <Testimonials />

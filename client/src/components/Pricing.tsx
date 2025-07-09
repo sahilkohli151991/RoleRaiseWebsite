@@ -1,42 +1,74 @@
-import { Check, CreditCard, Users, Award } from 'lucide-react';
+import { Check, CreditCard, Zap, Star, Crown, Settings, Users, Award } from 'lucide-react';
 import PayPalButton from './PayPalButton';
 
 export default function Pricing() {
-  const plans = [
+  const programs = [
     {
-      name: "Essential",
-      description: "Perfect for early-career professionals",
-      price: 2497,
+      name: "Interview Mastery",
+      icon: <Zap className="w-6 h-6" />,
+      originalPrice: 9564,
+      discountedPrice: 2980,
+      description: "Perfect for interview preparation",
       features: [
-        "Career assessment & strategy",
         "Resume & LinkedIn optimization",
-        "Interview preparation (4 sessions)",
-        "Email support"
+        "Interview prep course",
+        "2 mock interviews",
+        "Salary negotiation guide",
+        "Job-search strategy session",
+        "Community access"
       ]
     },
     {
-      name: "Premium",
-      description: "For serious career changers",
-      price: 4997,
+      name: "Dream Job Accelerator",
+      icon: <Star className="w-6 h-6" />,
+      originalPrice: 17964,
+      discountedPrice: 5980,
+      description: "Most comprehensive career transformation",
       featured: true,
       features: [
-        "Everything in Essential",
-        "1-on-1 mentor matching",
-        "Weekly mentorship calls (8 sessions)",
-        "System design training",
-        "Negotiation coaching"
+        "Everything in Interview Mastery",
+        "Personal FAANG mentor",
+        "5 guaranteed referrals",
+        "Unlimited 1:1 coaching",
+        "600+ applications handled",
+        "Expert salary negotiation (+ $34K avg.)",
+        "LinkedIn & resume overhaul by ex-recruiters",
+        "24/7 Slack support",
+        "Job guarantee or money-back"
       ]
     },
     {
-      name: "Elite",
+      name: "Elite Executive",
+      icon: <Crown className="w-6 h-6" />,
+      originalPrice: 29964,
+      discountedPrice: 8980,
       description: "For executives & senior professionals",
-      price: 9997,
       features: [
-        "Everything in Premium",
-        "C-level mentor assignment",
+        "Everything in Dream Job Accelerator",
+        "Dedicated career strategist",
+        "10 guaranteed C-suite referrals",
         "Executive presence coaching",
-        "Direct introductions to hiring managers",
-        "90-day job guarantee"
+        "Board interview prep",
+        "Equity negotiation masterclass",
+        "Priority placement guarantee",
+        "Job guarantee",
+        "1,000+ job applications managed"
+      ]
+    },
+    {
+      name: "Custom Enterprise",
+      icon: <Settings className="w-6 h-6" />,
+      originalPrice: null,
+      discountedPrice: "Custom",
+      description: "Fully bespoke career roadmap",
+      isCustom: true,
+      features: [
+        "Fully bespoke career roadmap",
+        "Unlimited applications & referrals",
+        "Dedicated account manager",
+        "Tailored timeline & milestones",
+        "Enterprise-level support",
+        "Success guarantee"
       ]
     }
   ];
@@ -53,55 +85,144 @@ export default function Pricing() {
           <p className="body-text-large max-w-3xl mx-auto">
             Choose the fastest path to your dream role. Average ROI: 400% within 90 days
           </p>
-          <div className="mt-6 bg-yellow-100 border border-yellow-400 rounded-lg p-4 inline-block">
-            <p className="text-yellow-800 font-bold">
-              ⚡ Early Bird Pricing - Save $2,000 (Only 15 spots left)
+          <div className="mt-6 bg-red-100 border border-red-400 rounded-lg p-4 inline-block">
+            <p className="text-red-800 font-bold">
+              🔥 Limited Time: 40% OFF All Programs - Act Fast!
             </p>
           </div>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {plans.map((plan, index) => (
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {programs.map((program, index) => (
             <div 
               key={index}
-              className={`bg-white rounded-3xl p-10 shadow-xl border-2 transition-all duration-300 hover:shadow-2xl ${
-                plan.featured 
+              className={`bg-white rounded-3xl p-8 shadow-xl border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
+                program.featured 
                   ? 'border-primary transform scale-105 relative' 
                   : 'border-gray-200 hover:border-gray-300'
               }`}
+              role="article"
+              aria-label={`${program.name} program details`}
             >
-              {plan.featured && (
+              {program.featured && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
                 </div>
               )}
-              
-              <div className="text-center mb-10">
-                <h3 className="text-3xl font-bold text-gray-900 mb-3">{plan.name}</h3>
-                <p className="text-gray-600 mb-8 text-lg">{plan.description}</p>
-                <div className="text-5xl font-black text-gray-900 mb-3">${plan.price.toLocaleString()}</div>
-                <p className="text-gray-600 font-medium">One-time payment</p>
+
+              {/* Discount Badge */}
+              {!program.isCustom && (
+                <div className="absolute -top-3 -right-3">
+                  <div className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12">
+                    40% OFF
+                  </div>
+                </div>
+              )}
+
+              <div className="text-center mb-8">
+                <div className="flex items-center justify-center mb-4">
+                  <div className={`p-3 rounded-full ${
+                    program.featured ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    {program.icon}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{program.name}</h3>
+                <p className="text-gray-600 mb-6 text-sm">{program.description}</p>
+                
+                <div className="pricing-container">
+                  {!program.isCustom ? (
+                    <>
+                      <div className="text-lg text-gray-500 line-through mb-2">
+                        ${program.originalPrice?.toLocaleString()}
+                      </div>
+                      <div className="text-4xl font-black text-gray-900 mb-3">
+                        ${program.discountedPrice.toLocaleString()}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="text-4xl font-black text-gray-900 mb-3">
+                      {program.discountedPrice}
+                    </div>
+                  )}
+                  <p className="text-gray-600 font-medium text-sm">One-time payment</p>
+                </div>
               </div>
-              
-              <ul className="space-y-5 mb-10">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-4 flex-shrink-0" />
-                    <span className="text-gray-700 font-medium">{feature}</span>
+
+              <ul className="space-y-4 mb-8">
+                {program.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="flex items-start">
+                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
-              
+
               <div className="paypal-button-container">
-                <PayPalButton 
-                  amount={plan.price.toString()}
-                  currency="USD"
-                  intent="CAPTURE"
-                  id={`paypal-button-${plan.name.toLowerCase()}`}
-                />
+                {!program.isCustom ? (
+                  <PayPalButton 
+                    amount={program.discountedPrice.toString()}
+                    currency="USD"
+                    intent="CAPTURE"
+                    id={`paypal-button-${program.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  />
+                ) : (
+                  <button 
+                    className="w-full bg-primary text-white py-4 px-6 rounded-xl font-bold text-lg hover:bg-primary/90 transition-colors duration-200"
+                    onClick={() => {
+                      // Scroll to contact section or open Calendly
+                      const bookCallSection = document.getElementById('book-call');
+                      if (bookCallSection) {
+                        bookCallSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    aria-label="Get custom enterprise pricing"
+                  >
+                    Get Custom Quote
+                  </button>
+                )}
+              </div>
+              
+              <div className="mt-4 text-center">
+                <p className="text-xs text-gray-500">
+                  💰 Money-back guarantee • 🔒 Secure payment
+                </p>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Additional Trust Indicators */}
+        <div className="mt-16 text-center">
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="flex items-center justify-center space-x-3">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                <Check className="w-6 h-6 text-green-600" />
+              </div>
+              <div className="text-left">
+                <div className="font-semibold text-gray-900">90-Day Guarantee</div>
+                <div className="text-sm text-gray-600">Job offer or money back</div>
+              </div>
+            </div>
+            <div className="flex items-center justify-center space-x-3">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                <Star className="w-6 h-6 text-blue-600" />
+              </div>
+              <div className="text-left">
+                <div className="font-semibold text-gray-900">4.9/5 Rating</div>
+                <div className="text-sm text-gray-600">From 742+ clients</div>
+              </div>
+            </div>
+            <div className="flex items-center justify-center space-x-3">
+              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                <Crown className="w-6 h-6 text-purple-600" />
+              </div>
+              <div className="text-left">
+                <div className="font-semibold text-gray-900">FAANG Mentors</div>
+                <div className="text-sm text-gray-600">Ex-employees guide you</div>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div className="text-center mt-16">
