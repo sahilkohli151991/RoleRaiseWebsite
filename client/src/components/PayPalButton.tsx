@@ -59,11 +59,11 @@ export default function PayPalButton({
       const orderData = await orderResponse.json();
       
       // Redirect to PayPal for payment approval
-      const approveLink = orderData.links.find((link: any) => link.rel === 'approve');
+      const approveLink = orderData.links.find((link: any) => link.rel === 'payer-action');
       if (approveLink) {
         window.location.href = approveLink.href;
       } else {
-        throw new Error('No approval link found');
+        throw new Error('No payment link found');
       }
     } catch (error) {
       console.error('PayPal payment error:', error);
