@@ -1,0 +1,58 @@
+You are a full-stack web developer. Update my Replit website’s HTML/CSS to add a new **“Programs”** section with a responsive pricing table that includes these four offerings as one-time payments, showing the original price struck through and a **“40% OFF”** badge above each discounted price:
+
+1. **Interview Mastery**  
+   - Original: ~~\$9,564~~ → **\$2,980**  
+   - Features:  
+     • Resume & LinkedIn optimization  
+     • Interview prep course  
+     • 2 mock interviews  
+     • Salary negotiation guide  
+     • Job-search strategy session  
+     • Community access  
+
+2. **Dream Job Accelerator**  
+   - Original: ~~\$17,964~~ → **\$5,980**  
+   - Features:  
+     • Everything in Interview Mastery  
+     • Personal FAANG mentor  
+     • 5 guaranteed referrals  
+     • Unlimited 1:1 coaching  
+     • 600+ applications handled  
+     • Expert salary negotiation (+ \$34K avg.)  
+     • LinkedIn & resume overhaul by ex-recruiters  
+     • 24/7 Slack support  
+     • Job guarantee or money-back  
+
+3. **Elite Executive**  
+   - Original: ~~\$29,964~~ → **\$8,980**  
+   - Features:  
+     • Everything in Dream Job Accelerator  
+     • Dedicated career strategist  
+     • 10 guaranteed C-suite referrals  
+     • Executive presence coaching  
+     • Board interview prep  
+     • Equity negotiation masterclass  
+     • Priority placement guarantee  
+     • Job guarantee  
+     • 1,000+ job applications managed  
+
+4. **Custom Enterprise**  
+   - Custom one-time retainer  
+   - Features:  
+     • Fully bespoke career roadmap  
+     • Unlimited applications & referrals  
+     • Dedicated account manager  
+     • Tailored timeline & milestones  
+     • Enterprise-level support  
+     • Success guarantee  
+
+**Requirements:**  
+- Insert this section below the existing hero/banner.  
+- Use your site’s CSS variables and typography.  
+- Build a 4-column grid on desktop, stacking on mobile.  
+- Strike through the original price and add a **“40% OFF”** badge above each discounted price.  
+- Add a “Get Lifetime Access” button under each card linking to the checkout page.  
+- Ensure accessibility (ARIA labels) and mobile responsiveness.  
+- Include smooth hover states on cards (e.g., lift + shadow).
+
+Generate the updated HTML/CSS (and minimal JS if needed) to implement exactly this.  
