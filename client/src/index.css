@@ -307,6 +307,24 @@
   }
 }
 
+/* Infinite scrolling banner animation */
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+/* Duplicate content for seamless loop */
+.scrolling-banner {
+  display: flex;
+  width: 200%; /* Double width for seamless loop */
+}
+
+.scrolling-banner .scroll-content {
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .dark {
   --background: hsl(240, 10%, 3.9%);
   --foreground: hsl(0, 0%, 98%);
