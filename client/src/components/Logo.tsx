@@ -1,5 +1,4 @@
 import React from 'react';
-import logoImage from '@assets/logo_1752131433617.jpeg';
 
 interface LogoProps {
   className?: string;
@@ -15,11 +14,32 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
 
   return (
     <div className={`${sizes[size]} ${className}`}>
-      <img 
-        src={logoImage} 
-        alt="RoleRaise Logo"
-        className="w-full h-full object-contain"
-      />
+      <svg
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full"
+      >
+        {/* Geometric R - Left vertical stem */}
+        <rect x="8" y="6" width="4" height="26" fill="#4A90A4"/>
+        
+        {/* Top horizontal bar */}
+        <rect x="12" y="6" width="14" height="4" fill="#4A90A4"/>
+        
+        {/* Bowl - horizontal middle */}
+        <rect x="12" y="16" width="10" height="4" fill="#4A90A4"/>
+        
+        {/* Bowl - right vertical */}
+        <rect x="22" y="10" width="4" height="10" fill="#4A90A4"/>
+        
+        {/* Diagonal leg */}
+        <polygon points="16,20 22,20 30,32 26,32" fill="#4A90A4"/>
+        
+        {/* Three-step staircase counter - carved out of the bowl */}
+        <rect x="14" y="8" width="2" height="2" fill="white"/>
+        <rect x="16" y="10" width="2" height="2" fill="white"/>
+        <rect x="18" y="12" width="2" height="2" fill="white"/>
+      </svg>
     </div>
   );
 }
@@ -27,11 +47,17 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
 export function LogoWithText({ className = '', size = 'md' }: LogoProps) {
   const isWhite = className.includes('text-white');
   
+  const textSizes = {
+    sm: 'text-lg',
+    md: 'text-2xl',
+    lg: 'text-3xl'
+  };
+  
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       <Logo size={size} />
-      <span className={`text-2xl font-bold ${isWhite ? 'text-white' : 'text-gray-900'}`}>
-        Role<span className="text-primary">Raise</span>
+      <span className={`${textSizes[size]} font-bold ${isWhite ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: 'Montserrat, Poppins, sans-serif' }}>
+        RoleRaise
       </span>
     </div>
   );
