@@ -20,67 +20,50 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Modern gradient definitions */}
+        {/* Modern professional gradient */}
         <defs>
-          <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#14b8a6"/>
-            <stop offset="100%" stopColor="#0f172a"/>
-          </linearGradient>
-          <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#06b6d4"/>
+          <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#1e40af"/>
             <stop offset="100%" stopColor="#3b82f6"/>
           </linearGradient>
         </defs>
         
-        {/* Main R structure - bold and geometric */}
+        {/* Clean, geometric "R" */}
         <path
-          d="M10 10 
+          d="M15 10 
              H55 
              Q70 10 70 25 
-             Q70 37 60 40 
+             Q70 40 55 45 
              L70 90 
              H55 
-             L45 40 
-             H25 
+             L45 45 
+             H30 
              V90 
-             H10 
+             H15 
              V10 Z"
-          fill="url(#primaryGradient)"
+          fill="url(#primaryGrad)"
         />
         
         {/* R bowl opening */}
-        <rect x="25" y="20" width="30" height="10" fill="white" rx="2"/>
+        <rect x="30" y="20" width="25" height="15" fill="white" rx="2"/>
         
-        {/* Integrated upward arrow/staircase - career acceleration symbol */}
+        {/* Modern upward arrow - career acceleration */}
         <path
-          d="M10 10 
-             L25 10 
-             L25 25 
-             L35 25 
-             L35 35 
-             L45 35 
-             L45 45 
-             L25 45 
-             L25 90 
-             L10 90 
+          d="M80 60 
+             L85 50 
+             L90 60 
+             L87 60 
+             L87 75 
+             L83 75 
+             L83 60 
              Z"
-          fill="white"
+          fill="url(#primaryGrad)"
         />
         
-        {/* Rocket/arrow accent - vibrant gradient */}
-        <path
-          d="M75 15 
-             L85 5 
-             L95 15 
-             L85 25 
-             Z"
-          fill="url(#accentGradient)"
-        />
-        
-        {/* Dynamic accent bars for energy */}
-        <rect x="75" y="30" width="20" height="3" fill="url(#accentGradient)" rx="1.5"/>
-        <rect x="78" y="36" width="17" height="2" fill="url(#accentGradient)" rx="1"/>
-        <rect x="81" y="40" width="14" height="2" fill="url(#accentGradient)" rx="1"/>
+        {/* Progress dots */}
+        <circle cx="85" cy="80" r="2" fill="url(#primaryGrad)"/>
+        <circle cx="85" cy="85" r="1.5" fill="url(#primaryGrad)" opacity="0.7"/>
+        <circle cx="85" cy="89" r="1" fill="url(#primaryGrad)" opacity="0.5"/>
       </svg>
     </div>
   );
@@ -95,29 +78,15 @@ export function LogoWithText({ className = '', size = 'md' }: LogoProps) {
     lg: 'text-3xl'
   };
   
-  const taglineSizes = {
-    sm: 'text-xs',
-    md: 'text-sm',
-    lg: 'text-base'
-  };
-  
   return (
-    <div className={`flex items-center space-x-4 ${className}`}>
+    <div className={`flex items-center space-x-3 ${className}`}>
       <Logo size={size} />
-      <div className="flex flex-col">
-        <span 
-          className={`${textSizes[size]} font-bold ${isWhite ? 'text-white' : 'text-slate-900'}`} 
-          style={{ fontFamily: 'Montserrat, sans-serif' }}
-        >
-          RoleRaise
-        </span>
-        <span 
-          className={`${taglineSizes[size]} font-medium ${isWhite ? 'text-gray-300' : 'text-slate-600'} mt-1`}
-          style={{ fontFamily: 'Montserrat, sans-serif' }}
-        >
-          Accelerate Your Career to $200K+ Tech Roles
-        </span>
-      </div>
+      <span 
+        className={`${textSizes[size]} font-bold ${isWhite ? 'text-white' : 'text-gray-900'}`} 
+        style={{ fontFamily: 'Inter, sans-serif' }}
+      >
+        RoleRaise
+      </span>
     </div>
   );
 }
