@@ -94,13 +94,13 @@ export default function Testimonials() {
               </div>
               <p className="body-text text-gray-700 mb-6 leading-relaxed">"{testimonial.content}"</p>
               <div className="flex items-center justify-between">
-                <div className="flex text-yellow-400">
+                <div className="flex text-brand-sun-amber">
                   {[...Array(testimonial.rating || 5)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-current" />
                   ))}
                 </div>
                 {testimonial.salaryIncrease && (
-                  <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-green-100 to-green-50 text-green-800 border border-green-200">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-brand-sky-blue to-brand-cloud-mist text-brand-emerald-teal border border-brand-emerald-teal">
                     <TrendingUp className="w-4 h-4 mr-1" />
                     {testimonial.salaryIncrease}
                   </div>
@@ -110,20 +110,7 @@ export default function Testimonials() {
           ))}
         </div>
         
-        {/* Discord Community CTA */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
-            <div className="max-w-2xl mx-auto">
-              <Heart className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Join Our Community of Success Stories
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                These are just a few of our many success stories! Join hundreds of professionals who've transformed their careers through RoleRaise.
-              </p>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );

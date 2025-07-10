@@ -73,7 +73,7 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-24 lg:py-32 bg-gray-50">
+    <section id="pricing" className="py-24 lg:py-32 bg-brand-cloud-mist">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-20">
           <div className="section-badge mb-6">
@@ -97,22 +97,22 @@ export default function Pricing() {
               key={index}
               className={`bg-white rounded-3xl p-8 shadow-xl border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
                 program.featured 
-                  ? 'border-primary transform scale-105 relative' 
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-brand-denim-blue transform scale-105 relative' 
+                  : 'border-brand-sky-blue hover:border-brand-denim-blue'
               }`}
               role="article"
               aria-label={`${program.name} program details`}
             >
               {program.featured && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+                  <span className="bg-brand-emerald-teal text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
                 </div>
               )}
 
               {/* Discount Badge */}
               {!program.isCustom && (
                 <div className="absolute -top-3 -right-3">
-                  <div className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12">
+                  <div className="bg-brand-coral-blush text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12">
                     40% OFF
                   </div>
                 </div>
@@ -121,38 +121,38 @@ export default function Pricing() {
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center mb-4">
                   <div className={`p-3 rounded-full ${
-                    program.featured ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'
+                    program.featured ? 'bg-brand-emerald-teal text-white' : 'bg-brand-sky-blue text-brand-slate-navy'
                   }`}>
                     {program.icon}
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{program.name}</h3>
-                <p className="text-gray-600 mb-6 text-sm">{program.description}</p>
+                <h3 className="text-2xl font-bold text-brand-slate-navy mb-3 font-heading">{program.name}</h3>
+                <p className="text-brand-graphite-gray mb-6 text-sm font-body">{program.description}</p>
                 
                 <div className="pricing-container">
                   {!program.isCustom ? (
                     <>
-                      <div className="text-lg text-gray-500 line-through mb-2">
+                      <div className="text-lg text-brand-graphite-gray line-through mb-2">
                         ${program.originalPrice?.toLocaleString()}
                       </div>
-                      <div className="text-4xl font-black text-gray-900 mb-3">
+                      <div className="text-4xl font-black text-brand-slate-navy mb-3 font-heading">
                         ${program.discountedPrice.toLocaleString()}
                       </div>
                     </>
                   ) : (
-                    <div className="text-4xl font-black text-gray-900 mb-3">
+                    <div className="text-4xl font-black text-brand-slate-navy mb-3 font-heading">
                       {program.discountedPrice}
                     </div>
                   )}
-                  <p className="text-gray-600 font-medium text-sm">One-time payment</p>
+                  <p className="text-brand-graphite-gray font-medium text-sm">One-time payment</p>
                 </div>
               </div>
 
               <ul className="space-y-4 mb-8">
                 {program.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-start">
-                    <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
+                    <Check className="w-4 h-4 text-brand-emerald-teal mr-3 flex-shrink-0 mt-0.5" />
+                    <span className="text-brand-graphite-gray text-sm leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>

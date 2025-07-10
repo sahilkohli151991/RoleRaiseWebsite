@@ -90,7 +90,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="py-24 lg:py-32 gradient-hero relative overflow-hidden">
+    <section id="hero" className="py-24 lg:py-32 bg-gradient-to-br from-brand-sky-blue via-brand-cloud-mist to-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div className="space-y-8">
@@ -98,41 +98,41 @@ export default function Hero() {
               ⚡ 742+ Tech Professionals Placed in 2025
             </div>
             
-            <h1 className="heading-1 mb-6">
+            <h1 className="heading-1 mb-6 font-heading text-brand-slate-navy">
               Accelerate Your Career to $200K+ Tech Roles
             </h1>
             
-            <p className="body-text-large mb-6 text-gray-700">
+            <p className="body-text-large mb-6 text-brand-graphite-gray font-body">
               Skip the endless job applications. Get direct access to exclusive $200K+ opportunities at leading technology companies through our proven referral network.
             </p>
             
-            <p className="body-text mb-10 text-gray-600">
-              <strong className="text-emerald-600 font-semibold">Not another course or bootcamp.</strong> We're your strategic career partners with a data-driven 90-day transformation system.
+            <p className="body-text mb-10 text-brand-graphite-gray font-body">
+              <strong className="text-brand-emerald-teal font-semibold">Not another course or bootcamp.</strong> We're your strategic career partners with a data-driven 90-day transformation system.
             </p>
             
             <div className="bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 lg:p-10 mb-12 border border-gray-100 shadow-xl">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <div className="text-center group">
                   <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-4 sm:p-6 mb-4 border border-emerald-100 group-hover:shadow-lg transition-all duration-300">
-                    <div className="text-3xl sm:text-4xl font-black text-emerald-700 mb-2">92%</div>
-                    <div className="text-xs sm:text-sm font-semibold text-emerald-600 uppercase tracking-wide">Success Rate</div>
+                    <div className="text-3xl sm:text-4xl font-black text-brand-emerald-teal mb-2">92%</div>
+                    <div className="text-xs sm:text-sm font-semibold text-brand-emerald-teal uppercase tracking-wide">Success Rate</div>
                   </div>
                   <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">Of clients receive job offers within 90 days</p>
                 </div>
                 <div className="text-center group">
                   <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 sm:p-6 mb-4 border border-blue-100 group-hover:shadow-lg transition-all duration-300">
-                    <div className="text-3xl sm:text-4xl font-black text-blue-700 mb-2">$34K</div>
-                    <div className="text-xs sm:text-sm font-semibold text-blue-600 uppercase tracking-wide">Avg. Salary Increase</div>
+                    <div className="text-3xl sm:text-4xl font-black text-brand-denim-blue mb-2">$34K</div>
+                    <div className="text-xs sm:text-sm font-semibold text-brand-denim-blue uppercase tracking-wide">Avg. Salary Increase</div>
                   </div>
                   <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">Average salary boost for successful candidates</p>
                 </div>
                 <div className="text-center group sm:col-span-2 lg:col-span-1">
                   <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-4 sm:p-6 mb-4 border border-purple-100 group-hover:shadow-lg transition-all duration-300">
-                    <div className="text-3xl sm:text-4xl font-black text-purple-700 mb-2">
+                    <div className="text-3xl sm:text-4xl font-black text-brand-slate-navy mb-2">
                       <span className="block sm:inline">6</span>
                       <span className="block sm:inline text-2xl sm:text-3xl"> Weeks</span>
                     </div>
-                    <div className="text-xs sm:text-sm font-semibold text-purple-600 uppercase tracking-wide">Time to Offer</div>
+                    <div className="text-xs sm:text-sm font-semibold text-brand-slate-navy uppercase tracking-wide">Time to Offer</div>
                   </div>
                   <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">Average time from start to job offer</p>
                 </div>
@@ -155,7 +155,7 @@ export default function Hero() {
                     scrollToSection('book-call');
                   }
                 }}
-                className="btn-primary px-12 py-6 text-xl font-black rounded-2xl relative overflow-hidden group"
+                className="bg-gradient-to-r from-brand-emerald-teal to-brand-denim-blue text-white px-12 py-6 text-xl font-black rounded-2xl relative overflow-hidden group hover:shadow-lg transition-all duration-300"
               >
                 <span className="relative z-10">🚀 SCHEDULE CALL WITH ROLERAISE</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

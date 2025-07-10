@@ -11,7 +11,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900 text-white py-20 lg:py-24">
+    <footer className="bg-brand-slate-navy text-white py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
           {/* Brand */}
@@ -19,7 +19,7 @@ export default function Footer() {
             <div className="mb-4">
               <LogoWithText size="md" className="text-white" />
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-brand-cloud-mist mb-6">
               Helping professionals land $200K+ tech roles with proven mentorship and strategies.
             </p>
             <div className="flex space-x-4">

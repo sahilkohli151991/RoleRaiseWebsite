@@ -20,7 +20,7 @@ export default function Guarantee() {
   ];
 
   return (
-    <section className="py-20 bg-primary text-white">
+    <section className="py-20 bg-gradient-to-br from-brand-denim-blue to-brand-slate-navy text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold text-white mb-6 border border-white/20">

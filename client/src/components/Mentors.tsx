@@ -74,14 +74,14 @@ export default function Mentors() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {mentors.map((mentor, index) => (
-            <div key={index} className="mentor-card rounded-2xl p-8 text-center shadow-lg border border-gray-200 card-hover">
+            <div key={index} className="mentor-card rounded-2xl p-8 text-center shadow-lg border border-brand-sky-blue card-hover bg-white hover:border-brand-denim-blue transition-all duration-300">
               <img 
                 src={mentor.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(mentor.name)}&background=5046E5&color=fff&size=96`}
                 alt={mentor.name}
                 className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
               />
               <h3 className="font-bold text-gray-900 mb-2">{mentor.name}</h3>
-              <p className="text-primary font-semibold mb-2">{mentor.title} @ {mentor.company}</p>
+              <p className="text-brand-emerald-teal font-semibold mb-2">{mentor.title} @ {mentor.company}</p>
               <p className="text-gray-600 text-sm">{mentor.bio}</p>
             </div>
           ))}
