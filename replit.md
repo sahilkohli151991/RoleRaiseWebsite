@@ -148,3 +148,4 @@ Changelog:
 - July 10, 2025. Added simple refund policy "Not happy in 2 weeks? Get your refund" while keeping results-focused messaging throughout the platform
 - July 10, 2025. Removed Discord community button from testimonials section and cleaned up imports
 - July 10, 2025. Applied comprehensive brand theme with new color palette (denim blue, slate navy, emerald teal, etc.) and typography system using Lexend for headings and Inter for body text
+- July 10, 2025. Reordered mentors to show Sahil, Nimisha, and Nitil in first three positions as requested
