@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface LogoProps {
+interface LogoSimpleProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
 }
 
-export default function Logo({ className = '', size = 'md' }: LogoProps) {
+export default function LogoSimple({ className = '', size = 'md' }: LogoSimpleProps) {
   const sizes = {
     sm: 'w-8 h-8',
     md: 'w-10 h-10',
@@ -82,42 +82,6 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
         <rect x="78" y="36" width="17" height="2" fill="url(#accentGradient)" rx="1"/>
         <rect x="81" y="40" width="14" height="2" fill="url(#accentGradient)" rx="1"/>
       </svg>
-    </div>
-  );
-}
-
-export function LogoWithText({ className = '', size = 'md' }: LogoProps) {
-  const isWhite = className.includes('text-white');
-  
-  const textSizes = {
-    sm: 'text-lg',
-    md: 'text-2xl',
-    lg: 'text-3xl'
-  };
-  
-  const taglineSizes = {
-    sm: 'text-xs',
-    md: 'text-sm',
-    lg: 'text-base'
-  };
-  
-  return (
-    <div className={`flex items-center space-x-4 ${className}`}>
-      <Logo size={size} />
-      <div className="flex flex-col">
-        <span 
-          className={`${textSizes[size]} font-bold ${isWhite ? 'text-white' : 'text-slate-900'}`} 
-          style={{ fontFamily: 'Montserrat, sans-serif' }}
-        >
-          RoleRaise
-        </span>
-        <span 
-          className={`${taglineSizes[size]} font-medium ${isWhite ? 'text-gray-300' : 'text-slate-600'} mt-1`}
-          style={{ fontFamily: 'Montserrat, sans-serif' }}
-        >
-          Accelerate Your Career to $200K+ Tech Roles
-        </span>
-      </div>
     </div>
   );
 }
