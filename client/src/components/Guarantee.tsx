@@ -4,18 +4,18 @@ export default function Guarantee() {
   const guarantees = [
     {
       icon: <Target className="w-12 h-12 text-white" />,
-      title: "Interview Guarantee",
-      description: "3 interviews in 90 days or full refund + free support"
+      title: "Interview Acceleration",
+      description: "3 interviews in 90 days with our proven system"
     },
     {
       icon: <DollarSign className="w-12 h-12 text-white" />,
-      title: "Salary Guarantee", 
-      description: "+$10K min. or refund difference + free work until it does"
+      title: "Salary Optimization", 
+      description: "+$34K average salary increase with expert negotiation"
     },
     {
       icon: <RotateCcw className="w-12 h-12 text-white" />,
-      title: "Lifetime Support",
-      description: "Extend indefinitely until you land"
+      title: "Ongoing Support",
+      description: "Continuous coaching until you achieve your goals"
     }
   ];
 
@@ -25,10 +25,10 @@ export default function Guarantee() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold text-white mb-6 border border-white/20">
             <Shield className="w-4 h-4 mr-2" />
-            Zero Risk Guarantee
+            Proven Results System
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-            We take all the risk, you get all the reward
+            Our proven system delivers consistent results
           </h2>
         </div>
         
@@ -47,7 +47,7 @@ export default function Guarantee() {
         <div className="text-center">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-3xl mx-auto border border-white/20">
             <p className="text-lg font-semibold text-white">
-              <strong>Think About It:</strong> Investing $2,991 now vs. staying $50K/year under-paid...
+              <strong>Think About It:</strong> Investing $2,980 now vs. staying $50K/year under-paid for another year...
             </p>
           </div>
         </div>

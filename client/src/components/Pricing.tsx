@@ -34,7 +34,7 @@ export default function Pricing() {
         "Expert salary negotiation (+ $34K avg.)",
         "LinkedIn & resume overhaul by ex-recruiters",
         "24/7 Slack support",
-        "Job guarantee or money-back"
+        "Job placement acceleration"
       ]
     },
     {
@@ -50,8 +50,7 @@ export default function Pricing() {
         "Executive presence coaching",
         "Board interview prep",
         "Equity negotiation masterclass",
-        "Priority placement guarantee",
-        "Job guarantee",
+        "Priority job placement",
         "1,000+ job applications managed"
       ]
     },
@@ -68,7 +67,7 @@ export default function Pricing() {
         "Dedicated account manager",
         "Tailored timeline & milestones",
         "Enterprise-level support",
-        "Success guarantee"
+        "Success acceleration"
       ]
     }
   ];
