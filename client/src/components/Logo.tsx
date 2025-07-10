@@ -20,29 +20,30 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Main R shape - solid blue background */}
+        {/* Main R shape - clean and professional */}
         <path
-          d="M0 0 
+          d="M35 10 
              H75 
-             Q95 0 95 25 
-             Q95 45 80 50 
-             L95 100 
+             Q90 10 90 25 
+             Q90 40 75 45 
+             L90 90 
              H70 
-             L55 50 
-             H25 
-             V100 
-             H0 
+             L55 45 
+             H35 
+             V90 
+             H15 
+             V10 
              Z"
-          fill="#4A90A4"
+          fill="#2563eb"
         />
         
-        {/* R bowl - inner part */}
-        <rect x="25" y="20" width="50" height="15" fill="#4A90A4"/>
+        {/* R bowl - inner space */}
+        <rect x="35" y="20" width="35" height="15" fill="white"/>
         
-        {/* Staircase cutout pattern - three steps */}
-        <rect x="0" y="0" width="25" height="25" fill="white"/>
-        <rect x="25" y="25" width="15" height="15" fill="white"/>
-        <rect x="40" y="40" width="15" height="10" fill="white"/>
+        {/* Staircase pattern - three distinct steps */}
+        <rect x="15" y="10" width="20" height="20" fill="white"/>
+        <rect x="25" y="30" width="15" height="15" fill="white"/>
+        <rect x="30" y="45" width="12" height="12" fill="white"/>
       </svg>
     </div>
   );
