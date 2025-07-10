@@ -146,3 +146,4 @@ Changelog:
 - July 10, 2025. Created fresh modern logo with app-icon style design featuring rounded square background, gradient colors, and upward progression elements (ascending bars and arrow)
 - July 10, 2025. Removed all money-back guarantees from pricing and guarantee sections while maintaining strong sales hooks and psychological triggers for conversion optimization
 - July 10, 2025. Added simple refund policy "Not happy in 2 weeks? Get your refund" while keeping results-focused messaging throughout the platform
+- July 10, 2025. Removed Discord community button from testimonials section and cleaned up imports
