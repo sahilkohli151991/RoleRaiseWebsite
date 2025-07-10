@@ -15,42 +15,29 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
   return (
     <div className={`${sizes[size]} ${className}`}>
       <svg
-        viewBox="0 0 80 80"
+        viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Corporate gradient */}
-        <defs>
-          <linearGradient id="corporateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0f172a"/>
-            <stop offset="100%" stopColor="#1e293b"/>
-          </linearGradient>
-        </defs>
-        
-        {/* Professional "R" letterform */}
+        {/* Simple, clean R */}
         <path
-          d="M12 12 
-             H44 
-             Q56 12 56 24 
-             Q56 36 44 40 
-             L56 68 
-             H44 
-             L32 40 
-             H24 
-             V68 
-             H12 
-             V12 Z"
-          fill="url(#corporateGrad)"
+          d="M8 6 
+             H22 
+             Q28 6 28 12 
+             Q28 18 22 20 
+             L28 32 
+             H22 
+             L16 20 
+             H14 
+             V32 
+             H8 
+             V6 Z"
+          fill="#3b82f6"
         />
         
-        {/* R counter (bowl opening) */}
-        <rect x="24" y="20" width="20" height="12" fill="white"/>
-        
-        {/* Minimal accent mark */}
-        <rect x="60" y="12" width="8" height="2" fill="url(#corporateGrad)"/>
-        <rect x="62" y="16" width="6" height="2" fill="url(#corporateGrad)" opacity="0.7"/>
-        <rect x="64" y="20" width="4" height="2" fill="url(#corporateGrad)" opacity="0.5"/>
+        {/* R bowl */}
+        <rect x="14" y="10" width="8" height="6" fill="white"/>
       </svg>
     </div>
   );
