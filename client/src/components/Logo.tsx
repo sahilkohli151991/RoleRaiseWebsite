@@ -49,6 +49,14 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
         
         {/* R counter */}
         <rect x="18" y="16" width="8" height="6" fill="url(#bgGradient)"/>
+        
+        {/* Upward progression elements */}
+        <rect x="36" y="32" width="2" height="4" fill="white" rx="1"/>
+        <rect x="39" y="28" width="2" height="8" fill="white" rx="1"/>
+        <rect x="42" y="24" width="2" height="12" fill="white" rx="1"/>
+        
+        {/* Arrow pointing up */}
+        <path d="M43 16 L45 14 L47 16 L46 16 L46 20 L44 20 L44 16 Z" fill="white"/>
       </svg>
     </div>
   );
