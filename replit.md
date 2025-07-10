@@ -152,3 +152,4 @@ Changelog:
 - July 10, 2025. Applied complete brand color palette throughout entire website: Soft Sky Blue, Denim Blue, Slate Navy, Cloud Mist, Graphite Gray, Emerald Teal, Sun Amber, Coral Blush
 - July 10, 2025. Integrated Lexend font for headings and Inter font for body text across all components
 - July 10, 2025. Removed "Join Our Community of Success Stories" section from testimonials as requested
+- July 10, 2025. Added support email contact (support@roleraise.com) to footer with branded styling

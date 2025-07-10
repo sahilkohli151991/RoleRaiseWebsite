@@ -77,10 +77,25 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-white">Company</h3>
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+              <li>
+                <a href="mailto:support@roleraise.com" className="text-gray-400 hover:text-white transition-colors">
+                  Contact Us
+                </a>
+              </li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
             </ul>
+            <div className="mt-4">
+              <p className="text-gray-400 text-sm">
+                Questions? Drop us an email at
+              </p>
+              <a 
+                href="mailto:support@roleraise.com" 
+                className="text-brand-emerald-teal hover:text-white transition-colors font-semibold"
+              >
+                support@roleraise.com
+              </a>
+            </div>
           </div>
         </div>
         
