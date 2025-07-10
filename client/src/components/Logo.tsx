@@ -15,55 +15,42 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
   return (
     <div className={`${sizes[size]} ${className}`}>
       <svg
-        viewBox="0 0 100 100"
+        viewBox="0 0 80 80"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Modern professional gradient */}
+        {/* Corporate gradient */}
         <defs>
-          <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1e40af"/>
-            <stop offset="100%" stopColor="#3b82f6"/>
+          <linearGradient id="corporateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#0f172a"/>
+            <stop offset="100%" stopColor="#1e293b"/>
           </linearGradient>
         </defs>
         
-        {/* Clean, geometric "R" */}
+        {/* Professional "R" letterform */}
         <path
-          d="M15 10 
-             H55 
-             Q70 10 70 25 
-             Q70 40 55 45 
-             L70 90 
-             H55 
-             L45 45 
-             H30 
-             V90 
-             H15 
-             V10 Z"
-          fill="url(#primaryGrad)"
+          d="M12 12 
+             H44 
+             Q56 12 56 24 
+             Q56 36 44 40 
+             L56 68 
+             H44 
+             L32 40 
+             H24 
+             V68 
+             H12 
+             V12 Z"
+          fill="url(#corporateGrad)"
         />
         
-        {/* R bowl opening */}
-        <rect x="30" y="20" width="25" height="15" fill="white" rx="2"/>
+        {/* R counter (bowl opening) */}
+        <rect x="24" y="20" width="20" height="12" fill="white"/>
         
-        {/* Modern upward arrow - career acceleration */}
-        <path
-          d="M80 60 
-             L85 50 
-             L90 60 
-             L87 60 
-             L87 75 
-             L83 75 
-             L83 60 
-             Z"
-          fill="url(#primaryGrad)"
-        />
-        
-        {/* Progress dots */}
-        <circle cx="85" cy="80" r="2" fill="url(#primaryGrad)"/>
-        <circle cx="85" cy="85" r="1.5" fill="url(#primaryGrad)" opacity="0.7"/>
-        <circle cx="85" cy="89" r="1" fill="url(#primaryGrad)" opacity="0.5"/>
+        {/* Minimal accent mark */}
+        <rect x="60" y="12" width="8" height="2" fill="url(#corporateGrad)"/>
+        <rect x="62" y="16" width="6" height="2" fill="url(#corporateGrad)" opacity="0.7"/>
+        <rect x="64" y="20" width="4" height="2" fill="url(#corporateGrad)" opacity="0.5"/>
       </svg>
     </div>
   );
