@@ -1,9 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* RoleRaise Brand Theme */
+:root {
+  --color-soft-sky-blue: #DCEBF4;
+  --color-denim-blue: #5184D6;
+  --color-slate-navy: #153060;
+  --color-cloud-mist: #F5F6F8;
+  --color-graphite-gray: #3A3C3D;
+  --color-emerald-teal: #409C8B;
+  --color-sun-amber: #F2B15A;
+  --color-coral-blush: #F36E5B;
+
+  --font-heading: 'Lexend', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
 
 /* Professional animations */
 @keyframes slideInUp {

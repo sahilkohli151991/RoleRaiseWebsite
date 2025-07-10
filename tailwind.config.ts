@@ -61,6 +61,21 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        // RoleRaise Brand Colors
+        brand: {
+          'sky-blue': '#DCEBF4',
+          'denim-blue': '#5184D6',
+          'slate-navy': '#153060',
+          'cloud-mist': '#F5F6F8',
+          'graphite-gray': '#3A3C3D',
+          'emerald-teal': '#409C8B',
+          'sun-amber': '#F2B15A',
+          'coral-blush': '#F36E5B',
+        },
+      },
+      fontFamily: {
+        heading: ['Lexend', 'ui-sans-serif', 'system-ui'],
+        body: ['Inter', 'ui-sans-serif', 'system-ui'],
       },
       keyframes: {
         "accordion-down": {

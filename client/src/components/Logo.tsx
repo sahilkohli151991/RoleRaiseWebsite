@@ -20,16 +20,16 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Modern gradient background */}
+        {/* Brand gradient background */}
         <defs>
-          <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6366f1"/>
-            <stop offset="100%" stopColor="#3b82f6"/>
+          <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#5184D6"/>
+            <stop offset="100%" stopColor="#153060"/>
           </linearGradient>
         </defs>
         
         {/* Rounded square background */}
-        <rect width="48" height="48" rx="12" fill="url(#bgGradient)"/>
+        <rect width="48" height="48" rx="12" fill="url(#brandGradient)"/>
         
         {/* Modern R letterform */}
         <path
@@ -48,15 +48,15 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
         />
         
         {/* R counter */}
-        <rect x="18" y="16" width="8" height="6" fill="url(#bgGradient)"/>
+        <rect x="18" y="16" width="8" height="6" fill="url(#brandGradient)"/>
         
         {/* Upward progression elements */}
-        <rect x="36" y="32" width="2" height="4" fill="white" rx="1"/>
-        <rect x="39" y="28" width="2" height="8" fill="white" rx="1"/>
-        <rect x="42" y="24" width="2" height="12" fill="white" rx="1"/>
+        <rect x="36" y="32" width="2" height="4" fill="#409C8B" rx="1"/>
+        <rect x="39" y="28" width="2" height="8" fill="#409C8B" rx="1"/>
+        <rect x="42" y="24" width="2" height="12" fill="#409C8B" rx="1"/>
         
         {/* Arrow pointing up */}
-        <path d="M43 16 L45 14 L47 16 L46 16 L46 20 L44 20 L44 16 Z" fill="white"/>
+        <path d="M43 16 L45 14 L47 16 L46 16 L46 20 L44 20 L44 16 Z" fill="#409C8B"/>
       </svg>
     </div>
   );
@@ -75,8 +75,8 @@ export function LogoWithText({ className = '', size = 'md' }: LogoProps) {
     <div className={`flex items-center gap-4 ${className}`}>
       <Logo size={size} />
       <span 
-        className={`${textSizes[size]} font-bold ${isWhite ? 'text-white' : 'text-gray-900'}`} 
-        style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.025em' }}
+        className={`${textSizes[size]} font-bold ${isWhite ? 'text-white' : 'text-brand-slate-navy'} font-heading`} 
+        style={{ letterSpacing: '-0.025em' }}
       >
         RoleRaise
       </span>
