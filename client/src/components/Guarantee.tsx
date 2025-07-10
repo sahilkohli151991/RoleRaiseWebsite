@@ -30,6 +30,11 @@ export default function Guarantee() {
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
             Our proven system delivers consistent results
           </h2>
+          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 max-w-2xl mx-auto mb-8 border border-white/20">
+            <p className="text-white font-semibold text-lg">
+              Not happy in 2 weeks? Get your refund.
+            </p>
+          </div>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
