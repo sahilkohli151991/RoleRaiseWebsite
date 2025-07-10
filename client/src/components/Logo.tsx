@@ -1,5 +1,4 @@
 import React from 'react';
-import logoReference from '@assets/logo_1752131808253.jpeg';
 
 interface LogoProps {
   className?: string;
@@ -15,11 +14,36 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
 
   return (
     <div className={`${sizes[size]} ${className}`}>
-      <img 
-        src={logoReference} 
-        alt="RoleRaise Logo"
-        className="w-full h-full object-contain"
-      />
+      <svg
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full"
+      >
+        {/* Main R shape - solid blue background */}
+        <path
+          d="M0 0 
+             H75 
+             Q95 0 95 25 
+             Q95 45 80 50 
+             L95 100 
+             H70 
+             L55 50 
+             H25 
+             V100 
+             H0 
+             Z"
+          fill="#4A90A4"
+        />
+        
+        {/* R bowl - inner part */}
+        <rect x="25" y="20" width="50" height="15" fill="#4A90A4"/>
+        
+        {/* Staircase cutout pattern - three steps */}
+        <rect x="0" y="0" width="25" height="25" fill="white"/>
+        <rect x="25" y="25" width="15" height="15" fill="white"/>
+        <rect x="40" y="40" width="15" height="10" fill="white"/>
+      </svg>
     </div>
   );
 }
