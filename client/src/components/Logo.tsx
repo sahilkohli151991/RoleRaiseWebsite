@@ -20,30 +20,40 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Main R shape - clean and professional */}
+        {/* Ultra-modern minimalist "R" with ascending elements */}
+        <defs>
+          <linearGradient id="modernGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#3b82f6"/>
+            <stop offset="100%" stopColor="#1e40af"/>
+          </linearGradient>
+        </defs>
+        
+        {/* Main R - sleek and contemporary */}
         <path
-          d="M35 10 
-             H75 
-             Q90 10 90 25 
-             Q90 40 75 45 
-             L90 90 
-             H70 
-             L55 45 
-             H35 
-             V90 
+          d="M15 15 
+             H60 
+             Q75 15 75 30 
+             Q75 42 65 45 
+             L75 85 
+             H60 
+             L50 45 
+             H30 
+             V85 
              H15 
-             V10 
-             Z"
-          fill="#2563eb"
+             V15 Z"
+          fill="url(#modernGradient)"
         />
         
-        {/* R bowl - inner space */}
-        <rect x="35" y="20" width="35" height="15" fill="white"/>
+        {/* R bowl - clean opening */}
+        <rect x="30" y="25" width="30" height="10" fill="white" rx="3"/>
         
-        {/* Staircase pattern - three distinct steps */}
-        <rect x="15" y="10" width="20" height="20" fill="white"/>
-        <rect x="25" y="30" width="15" height="15" fill="white"/>
-        <rect x="30" y="45" width="12" height="12" fill="white"/>
+        {/* Modern ascending bars - representing growth/progress */}
+        <rect x="15" y="15" width="8" height="8" fill="white" rx="2"/>
+        <rect x="23" y="23" width="7" height="7" fill="white" rx="2"/>
+        <rect x="30" y="30" width="6" height="6" fill="white" rx="2"/>
+        
+        {/* Subtle highlight for premium feel */}
+        <rect x="15" y="15" width="60" height="2" fill="rgba(255,255,255,0.3)" rx="1"/>
       </svg>
     </div>
   );
